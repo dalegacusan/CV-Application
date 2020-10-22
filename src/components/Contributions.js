@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
-export default function Contributions(props) {
+export default class Contributions extends Component {
 
-    const [contribution, setContribution] = useState("");
+    state = {
+        contribText: ''
+    };
 
-    const handleInputChange = (e) => {
+    handleContribInput = (e) => {
         const { value } = e.target;
-        setContribution(value);
-        props.handleInputChange(contribution);
+        this.setState({ contribText: value });
     }
 
-    const handleContributionClick = () => {
-        
+    handleContributionClick = () => {
+        // Send back contribution text to Achievements.js
+        this.props.setContribution(this.state.contribText);
+
+        this.setState({contribText: ''});
+    };
+
+    render() {
+        return (
+            <div>
+                <input type="text" name="contribution" value={this.state.contribText} className="form-control" id="inputsContributions" placeholder="Relevant Contributions" onChange={this.handleContribInput} />
+                <button type="button" onClick={this.handleContributionClick} className="btn btn-primary">Add Contribution</button>
+            </div>
+        );
     }
 
-    return (
-        <div>
-            <input type="text" name="contribution" value={contribution} className="form-control" id="inputsContributions" placeholder="Relevant Contributions" onChange={handleInputChange} />
-            <button type="button" onClick={handleContributionClick} className="btn btn-primary">Add Contribution</button>
-        </div>
-    );
 }

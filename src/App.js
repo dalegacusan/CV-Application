@@ -24,6 +24,11 @@ class App extends Component {
       coursework: '',
       honors: '',
       clubs: '',
+    },
+    achievements: {
+      companyName: '',
+      position: '',
+      relevantContributions: [],
     }
   };
 
@@ -36,8 +41,12 @@ class App extends Component {
     });
   }
 
-  handleInformationSubmit = (e, formName) => {
+  handleInformationSubmit = (e, formName, miscellaneous) => {
     e.preventDefault();
+
+    this.setState(currState => {
+      return currState[formName].relevantContributions = miscellaneous;
+    });
 
     console.log(this.state[formName]);
 
@@ -52,7 +61,7 @@ class App extends Component {
 
   render() {
     let renderedComponent = null;
-    const { components, personalInfo, education } = this.state;
+    const { components, personalInfo, education, achievements } = this.state;
 
     switch(components[0]){
       case "information":
@@ -70,6 +79,15 @@ class App extends Component {
             infoObj={education}
             handleInputChange={(e) => this.handleInputChange(e, "education")}
             handleInformationSubmit={(e) => this.handleInformationSubmit(e, "education")}
+          />
+        )
+      break;
+      case "achievements":
+        renderedComponent = (
+          <Achievements
+            infoObj={achievements}
+            handleInputChange={(e) => this.handleInputChange(e, "achievements")}
+            handleInformationSubmit={this.handleInformationSubmit.bind(this)}
           />
         )
       break;
