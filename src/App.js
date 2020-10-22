@@ -18,18 +18,16 @@ class App extends Component {
       location: '',
       personalDescription: '',
     },
-    education:{
+    education: {
       schoolName: '',
       status: 'Undergraduate',
       coursework: '',
       honors: '',
       clubs: '',
     },
-    achievements: {
-      companyName: '',
-      position: '',
-      relevantContributions: [],
-    }
+    achievements: [],
+    skills: [],
+    awards: []
   };
 
   // Make a way to make the state being modified to be dynamic (not stuck to personalInfo)
@@ -41,14 +39,18 @@ class App extends Component {
     });
   }
 
-  handleInformationSubmit = (e, formName, miscellaneous) => {
+  handleInformationSubmit = (e, formName, subComponentState) => {
     e.preventDefault();
 
-    this.setState(currState => {
-      return currState[formName].relevantContributions = miscellaneous;
-    });
-
-    console.log(this.state[formName]);
+    if (formName === "achievements") {
+      this.setState(prevState => {
+        return { achievements: [...prevState.achievements, subComponentState] };
+      });
+    } else if (formName === "skills" || formName === "awards" ) {
+      this.setState(prevState => {
+        return { [formName]: [...prevState[formName], ...subComponentState] };
+      });
+    }
 
     this.setState((prevState) => {
       // Removes first item in components list to render next component in the DOM.
@@ -60,10 +62,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     let renderedComponent = null;
-    const { components, personalInfo, education, achievements } = this.state;
+    const { components, personalInfo, education, achievements, skills } = this.state;
 
-    switch(components[0]){
+    switch (components[0]) {
       case "information":
         renderedComponent = (
           <Information
@@ -72,7 +75,7 @@ class App extends Component {
             handleInformationSubmit={(e) => this.handleInformationSubmit(e, "personalInfo")}
           />
         )
-      break;
+        break;
       case "education":
         renderedComponent = (
           <Education
@@ -81,16 +84,28 @@ class App extends Component {
             handleInformationSubmit={(e) => this.handleInformationSubmit(e, "education")}
           />
         )
-      break;
+        break;
       case "achievements":
         renderedComponent = (
           <Achievements
-            infoObj={achievements}
-            handleInputChange={(e) => this.handleInputChange(e, "achievements")}
             handleInformationSubmit={this.handleInformationSubmit.bind(this)}
           />
         )
-      break;
+        break;
+      case "skills":
+        renderedComponent = (
+          <Skills
+            handleInformationSubmit={this.handleInformationSubmit.bind(this)}
+          />
+        )
+        break;
+      case "awards":
+        renderedComponent = (
+          <Awards
+            handleInformationSubmit={this.handleInformationSubmit.bind(this)}
+          />
+        )
+        break;
     }
 
     return (
