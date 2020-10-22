@@ -17,20 +17,29 @@ class App extends Component {
       website: '',
       location: '',
       personalDescription: '',
+    },
+    education:{
+      schoolName: '',
+      status: 'Undergraduate',
+      coursework: '',
+      honors: '',
+      clubs: '',
     }
   };
 
   // Make a way to make the state being modified to be dynamic (not stuck to personalInfo)
-  handleInputChange = (e) => {
+  handleInputChange = (e, formName) => {
     const { name, value } = e.target;
 
     this.setState(currState => {
-      return currState.personalInfo[name] = value;
+      return currState[formName][name] = value;
     });
   }
 
-  handleInformationSubmit = (e) => {
+  handleInformationSubmit = (e, formName) => {
     e.preventDefault();
+
+    console.log(this.state[formName]);
 
     this.setState((prevState) => {
       // Removes first item in components list to render next component in the DOM.
@@ -42,19 +51,28 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.personalInfo);
-
     let renderedComponent = null;
-    const { components } = this.state;
+    const { components, personalInfo, education } = this.state;
 
-    if (components[0] === "information") {
-      renderedComponent = (
-        <Information
-          infoObj={this.state.personalInfo}
-          handleInputChange={this.handleInputChange.bind(this)}
-          handleInformationSubmit={this.handleInformationSubmit.bind(this)}
-        />
-      )
+    switch(components[0]){
+      case "information":
+        renderedComponent = (
+          <Information
+            infoObj={personalInfo}
+            handleInputChange={(e) => this.handleInputChange(e, "personalInfo")}
+            handleInformationSubmit={(e) => this.handleInformationSubmit(e, "personalInfo")}
+          />
+        )
+      break;
+      case "education":
+        renderedComponent = (
+          <Education
+            infoObj={education}
+            handleInputChange={(e) => this.handleInputChange(e, "education")}
+            handleInformationSubmit={(e) => this.handleInformationSubmit(e, "education")}
+          />
+        )
+      break;
     }
 
     return (

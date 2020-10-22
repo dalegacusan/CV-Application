@@ -1,43 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function Education() {
+export default function Education(props) {
 
-    const [education, setEducation] = useState(
-        {
-            schoolName: '',
-            status: "Undergraduate",
-            coursework: '',
-            honors: '',
-            clubs: ''
-        }
-    );
-
-    const handleInputChange = e => {
-        const { name, value } = e.target;
-        
-        setEducation({ ...education, [name]: value });
-    };
-
-    const handleEducation = (e) => {
-        e.preventDefault();
-
-        console.log(education);
-    }
+    const { handleInputChange, handleInformationSubmit } = props;
+    const { schoolName, status, coursework, honors, clubs } = props.infoObj;
 
     return (
         <div className="categoryBox">
             <p>Education</p>
             <hr />
-            <form onSubmit={handleEducation}>
+            <form onSubmit={handleInformationSubmit}>
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="inputSchoolName">School Name</label>
-                        <input type="text" name="schoolName" value={education.schoolName} className="form-control" id="inputSchoolName" placeholder="School Name" onChange={handleInputChange} />
+                        <input type="text" name="schoolName" value={schoolName} className="form-control" id="inputSchoolName" placeholder="School Name" onChange={handleInputChange} />
                     </div>
                     {/*  */}
                     <div className="form-group col-md-6">
                         <label htmlFor="inputSchoolStatus">Status</label>
-                        <select className="form-control" name="status" value={education.status} id="inputSchoolStatus" onChange={handleInputChange}>
+                        <select className="form-control" name="status" value={status} id="inputSchoolStatus" onChange={handleInputChange}>
                             <option>Undergraduate</option>
                             <option>Graduate</option>
                         </select>
@@ -49,15 +30,15 @@ export default function Education() {
                 <div className="form-row">
                     <div className="form-group col-md-12">
                         <label htmlFor="inputCoursework">Relevant Coursework</label>
-                        <input type="text" name="coursework" value={education.coursework} className="form-control" id="inputCoursework" placeholder="Relevant Coursework" onChange={handleInputChange} />
+                        <input type="text" name="coursework" value={coursework} className="form-control" id="inputCoursework" placeholder="Relevant Coursework" onChange={handleInputChange} />
                     </div>
                     <div className="form-group col-md-12">
                         <label htmlFor="inputHonors">Honors</label>
-                        <input type="text" name="honors" value={education.honors} className="form-control" id="inputHonors" placeholder="Honors" onChange={handleInputChange} />
+                        <input type="text" name="honors" value={honors} className="form-control" id="inputHonors" placeholder="Honors" onChange={handleInputChange} />
                     </div>
                     <div className="form-group col-md-12">
                         <label htmlFor="inputClubs">Clubs</label>
-                        <input type="text" name="clubs" value={education.clubs} className="form-control" id="inputClubs" placeholder="Clubs" onChange={handleInputChange} />
+                        <input type="text" name="clubs" value={clubs} className="form-control" id="inputClubs" placeholder="Clubs" onChange={handleInputChange} />
                     </div>
                 </div>
                 <div className="form-row d-flex flex-row-reverse">
