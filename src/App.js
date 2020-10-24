@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import Information from './components/Information';
-import Education from './components/Education';
-import Achievements from './components/Achievements';
+import Education from './components/Education/Education';
+import Achievements from './components/Achievements/Achievements';
 import Skills from './components/Skills';
 import Awards from './components/Awards';
+import Resume from './components/Resume';
+
+// Todo:
+/*
+    [] On add repeating input, display another input
+    [] Skip Button for Education & Achievements
+*/
 
 class App extends Component {
 
@@ -18,13 +25,7 @@ class App extends Component {
       location: '',
       personalDescription: '',
     },
-    education: {
-      schoolName: '',
-      status: 'Undergraduate',
-      coursework: '',
-      honors: '',
-      clubs: '',
-    },
+    education: [],
     achievements: [],
     skills: [],
     awards: []
@@ -39,15 +40,23 @@ class App extends Component {
     });
   }
 
-  handleInformationSubmit = (e, formName, subComponentState) => {
+  handleInformationSubmit = (e, formName, subComponentState, skip) => {
     e.preventDefault();
 
-    if (formName === "achievements") {
+    if (formName === "achievements" || formName === "education") {
+
+      if (!skip) {
+        this.setState(prevState => {
+          // Passes OBJECT
+          return { [formName]: [...prevState[formName], subComponentState] };
+        });
+
+        return;
+      }
+
+    } else if (formName === "skills" || formName === "awards") {
       this.setState(prevState => {
-        return { achievements: [...prevState.achievements, subComponentState] };
-      });
-    } else if (formName === "skills" || formName === "awards" ) {
-      this.setState(prevState => {
+        // Passes ARRAY
         return { [formName]: [...prevState[formName], ...subComponentState] };
       });
     }
@@ -62,9 +71,8 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     let renderedComponent = null;
-    const { components, personalInfo, education, achievements, skills } = this.state;
+    const { components, personalInfo } = this.state;
 
     switch (components[0]) {
       case "information":
@@ -79,9 +87,7 @@ class App extends Component {
       case "education":
         renderedComponent = (
           <Education
-            infoObj={education}
-            handleInputChange={(e) => this.handleInputChange(e, "education")}
-            handleInformationSubmit={(e) => this.handleInformationSubmit(e, "education")}
+            handleInformationSubmit={this.handleInformationSubmit.bind(this)}
           />
         )
         break;
@@ -106,6 +112,10 @@ class App extends Component {
           />
         )
         break;
+      default:
+        renderedComponent = (
+          <Resume state={this.state}/>
+        )
     }
 
     return (
