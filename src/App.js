@@ -5,18 +5,22 @@ import Education from './components/Education/Education';
 import Achievements from './components/Achievements/Achievements';
 import Skills from './components/Skills';
 import Awards from './components/Awards';
-import Resume from './components/Resume';
+import Resume from './components/Resume/Resume';
 
 // Todo:
 /*
-    [] On add repeating input, display another input
-    [] Skip Button for Education & Achievements
+    [/] On add repeating input, display another input (edit: added a button instead)
+    [/] Skip Button for Education & Achievements
+    [] Validation for Clicking Skip without inputting anything to the form.
+    [] Form Validation - check for empty inputs, etc.
+    [] Back Button - Go back to previous component
 */
 
 class App extends Component {
 
   state = {
     components: ["information", "education", "achievements", "skills", "awards"],
+    // components: [],
     personalInfo: {
       name: '',
       mobileNo: '',
@@ -114,7 +118,7 @@ class App extends Component {
         break;
       default:
         renderedComponent = (
-          <Resume state={this.state}/>
+          <Resume state={this.state} />
         )
     }
 
@@ -124,7 +128,7 @@ class App extends Component {
           <p>CV Maker: Create professional resumes for free.</p>
         </div>
         <div className="row d-flex justify-content-center">
-          <div className="col-lg-6 col-md-12">
+          <div className="col-lg-8 col-md-12">
             {renderedComponent}
           </div>
         </div>
