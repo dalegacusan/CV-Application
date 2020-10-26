@@ -24,7 +24,7 @@ export default class Coursework extends Component {
                 <label htmlFor="inputCoursework">Relevant Coursework</label>
                 <div className="input-group">
                     <div className="input-group-prepend">
-                        <button type="button" className="btn btn-primary" onClick={this.handleCourseworkEnter}>+</button>
+                        <button type="button" className="btn customButton" onClick={this.handleCourseworkEnter}>+</button>
                     </div>
                     <input type="text" name="coursework" value={this.state.coursework} className="form-control" id="inputCoursework" placeholder="Relevant Coursework" onChange={this.handleInputChange} />
                 </div>

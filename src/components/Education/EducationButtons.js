@@ -20,14 +20,14 @@ export default class EducationButtons extends Component {
 
         let saveClick = (
             <div>
-                <button type="button" name="newEducation" className="btn btn-primary" value="newButton" onClick={this.handleOnSubmit}>New</button>
-                <button type="button" name="nextComponent" className="btn btn-dark" value="nextButton" onClick={this.handleOnSubmit}>Skip</button>
+                <button type="button" name="newEducation" className="btn newButton" value="newButton" onClick={this.handleOnSubmit}>New</button>
+                <button type="button" name="nextComponent" className="btn skipButton" value="nextButton" onClick={this.handleOnSubmit}>Skip</button>
             </div>
         );
 
         let saveNew = (
             <div>
-                <button type="button" name="submitEducation" className="btn btn-success" value="saveButton" onClick={this.handleOnSubmit}>Save</button>
+                <button type="button" name="submitEducation" className="btn saveButton" value="saveButton" onClick={this.handleOnSubmit}>Save</button>
             </div>
         );
 

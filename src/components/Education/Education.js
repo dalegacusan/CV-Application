@@ -68,8 +68,7 @@ export default class Education extends Component {
                         </div>
                     </div>
                     <div>
-                        {/* Make dynamic - when user typing on honor, change to "another coursework" etc. */}
-                        <small>Press <i>+ button</i> to add another relevant coursework/honor/club.</small>
+                        <small>Press + button to add another relevant coursework/honor/club.</small>
                     </div>
                     <div className="form-row">
                         <Coursework setCoursework={this.setArray.bind(this)} />

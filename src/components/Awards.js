@@ -33,14 +33,14 @@ export default class Awards extends Component {
                         <div className="form-group col-md-12">
                             <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <button type="button" className="btn btn-primary" onClick={this.setAward}>+</button>
+                                    <button type="button" className="btn customButton" onClick={this.setAward}>+</button>
                                 </div>
                                 <input type="text" name="coursework" value={this.state.awardDescription} className="form-control" id="inputAchievement" placeholder="Achievement Description" onChange={this.handleInputChange} />
                             </div>
                         </div>
                     </div>
                     <div className="form-row d-flex flex-row-reverse">
-                        <button type="submit" className="btn btn-success" value="Save">Save</button>
+                        <button type="submit" className="btn saveButton" value="Save">Save</button>
                     </div>
                 </form>
             </div>

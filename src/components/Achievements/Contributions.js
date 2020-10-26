@@ -23,7 +23,7 @@ export default class Contributions extends Component {
             <div>
                 <div className="input-group">
                     <div className="input-group-prepend">
-                        <button type="button" className="btn btn-primary" onClick={this.handleContributionClick}>+</button>
+                        <button type="button" className="btn customButton" onClick={this.handleContributionClick}>+</button>
                     </div>
                     <input type="text" name="contribution" value={this.state.contribText} className="form-control" id="inputsContributions" placeholder="Relevant Contributions" onChange={this.handleContribInput} />
                 </div>
