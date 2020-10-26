@@ -26,7 +26,7 @@ export default class Skills extends Component {
 
         return (
             <div className="categoryBox" >
-                <p className="categoryHeader"><i class="fas fa-running"></i>Skills</p>
+                <p className="categoryHeader"><i className="fas fa-running"></i>Skills</p>
                 <hr />
                 <form onSubmit={(e) => handleInformationSubmit(e, "skills", this.state.skills)}>
                     <div className="form-row">

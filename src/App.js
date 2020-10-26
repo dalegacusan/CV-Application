@@ -6,6 +6,7 @@ import Education from './components/Education/Education';
 import Achievements from './components/Achievements/Achievements';
 import Skills from './components/Skills';
 import Awards from './components/Awards';
+import Edit from "./components/Edit/Edit";
 import Resume from './components/Resume/Resume';
 
 // Todo:
@@ -20,8 +21,8 @@ import Resume from './components/Resume/Resume';
 class App extends Component {
 
   state = {
-    components: ["information", "education", "achievements", "skills", "awards", "resume"],
-    // components: ["resume"],
+    // components: ["information", "education", "achievements", "skills", "awards", "edit", "resume"],
+    components: ["edit"],
     personalInfo: {
       name: '',
       mobileNo: '',
@@ -117,10 +118,16 @@ class App extends Component {
           />
         )
         break;
+      case "edit":
+        renderedComponent = (
+          <Edit state={this.state} />
+        )
+        break;
       case "resume":
         renderedComponent = (
           <Resume state={this.state} />
         )
+        break;
     }
 
     console.log(this.state);

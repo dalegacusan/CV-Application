@@ -26,7 +26,7 @@ export default class Awards extends Component {
 
         return (
             <div className="categoryBox" >
-                <p className="categoryHeader"><i class="fas fa-trophy"></i>Awards, Honors, and Honorary Mentions</p>
+                <p className="categoryHeader"><i className="fas fa-trophy"></i>Awards, Honors, and Honorary Mentions</p>
                 <hr />
                 <form onSubmit={(e) => handleInformationSubmit(e, "awards", this.state.awards)}>
                     <div className="form-row">
