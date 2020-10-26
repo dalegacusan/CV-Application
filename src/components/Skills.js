@@ -18,7 +18,7 @@ export default class Skills extends Component {
             return { skills: [...currState.skills, this.state.skillDescription] };
         });
 
-        this.setState({skillDescription: ''});
+        this.setState({ skillDescription: '' });
     }
 
     render() {
@@ -26,13 +26,17 @@ export default class Skills extends Component {
 
         return (
             <div className="categoryBox" >
-                <p>Skills</p>
+                <p className="categoryHeader"><i class="fas fa-running"></i>Skills</p>
                 <hr />
                 <form onSubmit={(e) => handleInformationSubmit(e, "skills", this.state.skills)}>
                     <div className="form-row">
                         <div className="form-group col-md-12">
-                            <input type="text" name="skillDescription" value={this.state.skillDescription} className="form-control" id="inputSkill" placeholder="Skill Description" onChange={this.handleInputChange} />
-                            <button type="button" className="btn btn-primary" onClick={this.setSkill}>Add Skill</button>
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                    <button type="button" className="btn btn-primary" onClick={this.setSkill}>+</button>
+                                </div>
+                                <input type="text" name="skillDescription" value={this.state.skillDescription} className="form-control" id="inputSkill" placeholder="Skill Description" onChange={this.handleInputChange} />
+                            </div>
                         </div>
                     </div>
                     <div className="form-row d-flex flex-row-reverse">

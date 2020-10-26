@@ -20,8 +20,8 @@ import Resume from './components/Resume/Resume';
 class App extends Component {
 
   state = {
-    // components: ["information", "education", "achievements", "skills", "awards", "resume"],
-    components: ["resume"],
+    components: ["information", "education", "achievements", "skills", "awards", "resume"],
+    // components: ["resume"],
     personalInfo: {
       name: '',
       mobileNo: '',
@@ -122,6 +122,8 @@ class App extends Component {
           <Resume state={this.state} />
         )
     }
+
+    console.log(this.state);
 
     return (
       <div className={"App container"}>

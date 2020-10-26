@@ -44,7 +44,7 @@ export default class Achievements extends Component {
 
         return (
             <div className="categoryBox">
-                <p>Achievements</p>
+                <p className="categoryHeader"><i class="fas fa-award"></i>Achievements</p>
                 <hr />
                 <form>
                     <div className="form-row">

@@ -21,8 +21,12 @@ export default class Contributions extends Component {
     render() {
         return (
             <div>
-                <input type="text" name="contribution" value={this.state.contribText} className="form-control" id="inputsContributions" placeholder="Relevant Contributions" onChange={this.handleContribInput} />
-                <button type="button" onClick={this.handleContributionClick} className="btn btn-primary">Add Contribution</button>
+                <div className="input-group">
+                    <div className="input-group-prepend">
+                        <button type="button" className="btn btn-primary" onClick={this.handleContributionClick}>+</button>
+                    </div>
+                    <input type="text" name="contribution" value={this.state.contribText} className="form-control" id="inputsContributions" placeholder="Relevant Contributions" onChange={this.handleContribInput} />
+                </div>
             </div>
         );
     }

@@ -8,7 +8,7 @@ export default function PersonalInformation(props) {
     return (
         <div>
             <div className="categoryBox">
-                <p>Personal Information</p>
+                <p className="categoryHeader"><i class="fas fa-user"></i>Personal Information</p>
                 <hr />
                 <form onSubmit={handleInformationSubmit}>
                     <div className="form-row">
