@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Header from "./components/Header/Header";
 import Information from './components/Information';
 import Education from './components/Education/Education';
 import Achievements from './components/Achievements/Achievements';
@@ -19,8 +20,8 @@ import Resume from './components/Resume/Resume';
 class App extends Component {
 
   state = {
-    components: ["information", "education", "achievements", "skills", "awards"],
-    // components: [],
+    // components: ["information", "education", "achievements", "skills", "awards", "resume"],
+    components: ["resume"],
     personalInfo: {
       name: '',
       mobileNo: '',
@@ -116,16 +117,16 @@ class App extends Component {
           />
         )
         break;
-      default:
+      case "resume":
         renderedComponent = (
           <Resume state={this.state} />
         )
     }
 
     return (
-      <div className="App container">
+      <div className={"App container"}>
         <div className="row d-flex justify-content-center">
-          <p>CV Maker: Create professional resumes for free.</p>
+          <Header />
         </div>
         <div className="row d-flex justify-content-center">
           <div className="col-lg-8 col-md-12">
