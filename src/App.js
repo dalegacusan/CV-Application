@@ -120,17 +120,24 @@ class App extends Component {
         break;
       case "edit":
         renderedComponent = (
-          <Edit state={this.state} />
+          <Edit
+            state={this.state}
+            handleInputChange={this.handleInputChange.bind(this)}
+            handleInformationSubmit={this.handleInformationSubmit.bind(this)}
+          />
         )
         break;
       case "resume":
         renderedComponent = (
-          <Resume state={this.state} />
+          <Resume
+            state={this.state}
+            handleInputChange={this.handleInputChange.bind(this)}
+          />
         )
         break;
     }
 
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
       <div className={"App container"}>
