@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 export default class Contributions extends Component {
 
     state = {
@@ -15,7 +16,7 @@ export default class Contributions extends Component {
         // Send back contribution text to Achievements.js
         this.props.setContribution(this.state.contribText);
 
-        this.setState({contribText: ''});
+        this.setState({ contribText: '' });
     };
 
     render() {

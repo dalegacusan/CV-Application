@@ -1,21 +1,10 @@
 import React, { Component } from "react";
+import {handleInputChange, handleRetrieveInput} from "../../HelperFunctions/componentFormHandler";
 
 export default class Coursework extends Component {
 
     state = {
         honor: ''
-    }
-
-    handleInputChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-    }
-
-    handleHonorEnter = (e) => {
-        // Send back honor text to Education.js
-        this.props.setHonors(this.state.honor, "honors");
-
-        this.setState({ honor: '' });
     }
 
     render() {
@@ -24,9 +13,9 @@ export default class Coursework extends Component {
                 <label htmlFor="inputHonors">Honors</label>
                 <div className="input-group">
                     <div className="input-group-prepend">
-                        <button type="button" className="btn customButton" onClick={this.handleHonorEnter}>+</button>
+                        <button type="button" name="honor" className="btn customButton" onClick={(e) => handleRetrieveInput(e, this, "honors")}>+</button>
                     </div>
-                    <input type="text" name="honor" value={this.state.honor} className="form-control" id="inputHonors" placeholder="Honors" onChange={this.handleInputChange} />
+                    <input type="text" name="honor" value={this.state.honor} className="form-control" id="inputHonors" placeholder="Honors" onChange={handleInputChange.bind(this)} />
                 </div>
             </div>
         );

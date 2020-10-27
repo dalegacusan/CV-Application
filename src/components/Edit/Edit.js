@@ -5,7 +5,7 @@ export default class Edit extends Component {
     handleEditSubmit = (e) => {
         e.preventDefault();
 
-        const {name} = e.target;
+        const { name } = e.target;
 
         console.log("Anyeonghaseyo");
     }
@@ -24,10 +24,17 @@ export default class Edit extends Component {
             education: [
                 {
                     schoolName: 'De La Salle University',
-                    status: 'Graduate',
+                    status: 'Undergraduate',
                     courseworks: ["Intro to Graphic Design", "AP Art", "Yearbook", "Computer Applications"],
                     honors: ["Member of the National Honors Society and National Art Education Association"],
                     clubs: ["Yearbook Club", "Santa Monica Newspaper", "Spanish Club"],
+                },
+                {
+                    schoolName: 'Colegio San Agustin Makati',
+                    status: 'Graduate',
+                    courseworks: ["Intro to Graphic Design", "AP Art", "Yearbook", "Computer Applications"],
+                    honors: ["Member of the Graphics Art Association"],
+                    clubs: ["Yearbook Club", "Santa Monica Newspaper",],
                 }
             ],
             achievements: [
@@ -68,7 +75,7 @@ export default class Edit extends Component {
 
         const { handleInputChange } = this.props;
 
-        const { personalInfo, education, achievements, skills, awards } = this.props.state;
+        const { personalInfo, education, achievements, skills, awards } = mockState;
 
         const { name, mobileNo, email, website, location, personalDescription } = personalInfo;
 
@@ -80,13 +87,13 @@ export default class Edit extends Component {
                     <div className="card">
                         <div className="card-header" id="personalInformationHeading">
                             <h5 className="mb-0">
-                                <button className="btn btn-link" data-toggle="collapse" data-target="#collapsePersonalInformation" aria-expanded="true" aria-controls="collapsePersonalInformation">
+                                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsePersonalInformation" aria-expanded="false" aria-controls="collapsePersonalInformation">
                                     Personal Information
                                 </button>
                             </h5>
                         </div>
 
-                        <div id="collapsePersonalInformation" className="collapse show" aria-labelledby="personalInformationHeading" data-parent="#accordion">
+                        <div id="collapsePersonalInformation" className="collapse" aria-labelledby="personalInformationHeading" data-parent="#accordion">
                             <div className="card-body">
                                 <form onSubmit={this.handleEditSubmit}>
                                     {/* FULL NAME */}
@@ -143,14 +150,72 @@ export default class Edit extends Component {
                     <div className="card">
                         <div className="card-header" id="educationHeading">
                             <h5 className="mb-0">
-                                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEducation" aria-expanded="false" aria-controls="collapseEducation">
+                                <button className="btn btn-link" data-toggle="collapse" data-target="#collapseEducation" aria-expanded="true" aria-controls="collapseEducation">
                                     Education
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseEducation" className="collapse" aria-labelledby="educationHeading" data-parent="#accordion">
+                        <div id="collapseEducation" className="collapse show" aria-labelledby="educationHeading" data-parent="#accordion">
                             <div className="card-body">
-                                <p>Education Component goes here</p>
+                                <form onSubmit={this.handleEditSubmit}>
+                                    {/* FULL NAME */}
+                                    <div className="form-group row">
+                                        {/* <label htmlFor="inputSchoolName">School Name</label> */}
+                                        {
+                                            education.map(item => {
+                                                const { clubs, courseworks, honors, schoolName, status } = item;
+                                                return (
+                                                    <div>
+                                                        <span>School Name: {schoolName}</span>
+                                                        <br />
+                                                        <span>Status: {status}</span>
+                                                        <br />
+                                                        <span>Clubs: </span>
+                                                        {
+                                                            clubs.map(club => {
+                                                                return (
+                                                                    <span>{club}</span>
+                                                                );
+                                                            })
+                                                        }
+                                                    </div>
+                                                );
+                                            })
+                                        }
+                                        {/* <input type="text" name="schoolName" value={this.state.schoolName} className="form-control" id="inputSchoolName" placeholder="School Name" onChange={this.handleInputChange} /> */}
+                                    </div>
+                                    {/* MOBILE NUMBER
+                                    <div className="form-group row">
+                                        <label htmlFor="inputMobileNumber" className="col-sm-3 col-form-label">Status</label>
+                                        <div className="col-sm-9">
+                                            <input type="text" name="mobileNo" value={mobileNo} className="form-control" id="inputMobileNumber" placeholder="Mobile No." onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                        </div>
+                                    </div>
+                                    EMAIL ADDRESS
+                                    <div className="form-group row">
+                                        <label htmlFor="inputEmail" className="col-sm-3 col-form-label">Relevant Coursework</label>
+                                        <div className="col-sm-9">
+                                            <input type="email" name="email" value={email} className="form-control" id="inputEmail" placeholder="Email Address" onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                        </div>
+                                    </div>
+                                    WEBSITE
+                                    <div className="form-group row">
+                                        <label htmlFor="inputWebsite" className="col-sm-3 col-form-label">Honors</label>
+                                        <div className="col-sm-9">
+                                            <input type="text" name="website" value={website} className="form-control" id="inputWebsite" placeholder="Website" onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                        </div>
+                                    </div>
+                                    LOCATION
+                                    <div className="form-group row">
+                                        <label htmlFor="inputLocation" className="col-sm-3 col-form-label">Clubs</label>
+                                        <div className="col-sm-9">
+                                            <input type="text" name="location" value={location} className="form-control" id="inputLocation" placeholder="Location" onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                        </div>
+                                    </div> */}
+                                    <div className="form-row d-flex flex-row-reverse">
+                                        <button type="button" name="savePersonalInfo" className="btn saveButton" value="Save">Save</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
