@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
-
+import { handleInputChange, handleRetrieveInput } from "../../HelperFunctions/componentFormHandler";
 
 export default class Contributions extends Component {
 
     state = {
-        contribText: ''
-    };
-
-    handleContribInput = (e) => {
-        const { value } = e.target;
-        this.setState({ contribText: value });
-    }
-
-    handleContributionClick = () => {
-        // Send back contribution text to Achievements.js
-        this.props.setContribution(this.state.contribText);
-
-        this.setState({ contribText: '' });
+        contribution: ''
     };
 
     render() {
         return (
-            <div>
+            <div className="form-group col-md-12">
+                <label htmlFor="inputContribution">Relevant Contributions</label>
                 <div className="input-group">
                     <div className="input-group-prepend">
-                        <button type="button" className="btn customButton" onClick={this.handleContributionClick}>+</button>
+                        <button type="button" name="contribution" className="btn customButton" onClick={(e) => handleRetrieveInput(e, this, "contributions")}>+</button>
                     </div>
-                    <input type="text" name="contribution" value={this.state.contribText} className="form-control" id="inputsContributions" placeholder="Relevant Contributions" onChange={this.handleContribInput} />
+                    <input type="text" name="contribution" value={this.state.contribution} className="form-control" id="inputContributions" placeholder="Relevant Contribution" onChange={handleInputChange.bind(this)} />
                 </div>
             </div>
         );

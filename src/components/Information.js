@@ -44,7 +44,7 @@ export default function PersonalInformation(props) {
                         </div>
                     </div>
                     <div className="form-row d-flex flex-row-reverse">
-                        <button type="submit" className="btn saveButton" value="Save">Save</button>
+                        <button type="submit" name="save" className="btn saveButton" value="Save">Save</button>
                     </div>
                 </form>
             </div>

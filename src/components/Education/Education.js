@@ -18,7 +18,6 @@ export default class Education extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="categoryBox">
                 <p className="categoryHeader"><i className="fas fa-graduation-cap"></i>Education</p>

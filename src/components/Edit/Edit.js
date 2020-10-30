@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { handleInputChange, setComponentArray, handleSubmit } from "../../HelperFunctions/componentFormHandler";
 
 export default class Edit extends Component {
 
@@ -32,7 +33,7 @@ export default class Edit extends Component {
                 {
                     schoolName: 'Colegio San Agustin Makati',
                     status: 'Graduate',
-                    courseworks: ["Intro to Graphic Design", "AP Art", "Yearbook", "Computer Applications"],
+                    courseworks: ["AP Art", "Yearbook", "Computer Applications"],
                     honors: ["Member of the Graphics Art Association"],
                     clubs: ["Yearbook Club", "Santa Monica Newspaper",],
                 }
@@ -73,8 +74,6 @@ export default class Edit extends Component {
             ]
         }
 
-        const { handleInputChange } = this.props;
-
         const { personalInfo, education, achievements, skills, awards } = mockState;
 
         const { name, mobileNo, email, website, location, personalDescription } = personalInfo;
@@ -95,51 +94,51 @@ export default class Edit extends Component {
 
                         <div id="collapsePersonalInformation" className="collapse" aria-labelledby="personalInformationHeading" data-parent="#accordion">
                             <div className="card-body">
-                                <form onSubmit={this.handleEditSubmit}>
+                                <form>
                                     {/* FULL NAME */}
                                     <div className="form-group row">
                                         <label htmlFor="inputFullName" className="col-sm-3 col-form-label">Full Name</label>
                                         <div className="col-sm-9">
-                                            <input type="text" name="name" value={name} className="form-control" id="inputFullName" placeholder="Full Name" onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                            <input type="text" name="name" value={name} className="form-control" id="inputFullName" placeholder="Full Name" onChange={handleInputChange.bind(this)} />
                                         </div>
                                     </div>
                                     {/* MOBILE NUMBER */}
                                     <div className="form-group row">
                                         <label htmlFor="inputMobileNumber" className="col-sm-3 col-form-label">Mobile No.</label>
                                         <div className="col-sm-9">
-                                            <input type="text" name="mobileNo" value={mobileNo} className="form-control" id="inputMobileNumber" placeholder="Mobile No." onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                            <input type="text" name="mobileNo" value={mobileNo} className="form-control" id="inputMobileNumber" placeholder="Mobile No." onChange={handleInputChange.bind(this)} />
                                         </div>
                                     </div>
                                     {/* EMAIL ADDRESS */}
                                     <div className="form-group row">
                                         <label htmlFor="inputEmail" className="col-sm-3 col-form-label">Email Address</label>
                                         <div className="col-sm-9">
-                                            <input type="email" name="email" value={email} className="form-control" id="inputEmail" placeholder="Email Address" onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                            <input type="email" name="email" value={email} className="form-control" id="inputEmail" placeholder="Email Address" onChange={handleInputChange.bind(this)} />
                                         </div>
                                     </div>
                                     {/* WEBSITE */}
                                     <div className="form-group row">
                                         <label htmlFor="inputWebsite" className="col-sm-3 col-form-label">Website</label>
                                         <div className="col-sm-9">
-                                            <input type="text" name="website" value={website} className="form-control" id="inputWebsite" placeholder="Website" onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                            <input type="text" name="website" value={website} className="form-control" id="inputWebsite" placeholder="Website" onChange={handleInputChange.bind(this)} />
                                         </div>
                                     </div>
                                     {/* LOCATION */}
                                     <div className="form-group row">
                                         <label htmlFor="inputLocation" className="col-sm-3 col-form-label">Location</label>
                                         <div className="col-sm-9">
-                                            <input type="text" name="location" value={location} className="form-control" id="inputLocation" placeholder="Location" onChange={(e) => handleInputChange(e, "personalInfo")} />
+                                            <input type="text" name="location" value={location} className="form-control" id="inputLocation" placeholder="Location" onChange={handleInputChange.bind(this)} />
                                         </div>
                                     </div>
                                     {/* PERSONAL DESCRIPTION */}
                                     <div className="form-group row">
                                         <label htmlFor="inputPersonalDescription" className="col-sm-3 col-form-label">Brief Description</label>
                                         <div className="col-sm-9">
-                                            <textarea name="personalDescription" value={personalDescription} className="form-control" id="inputPersonalDescription" rows="6" placeholder="Tell us more about yourself..." onChange={(e) => handleInputChange(e, "personalInfo")} ></textarea>
+                                            <textarea name="personalDescription" value={personalDescription} className="form-control" id="inputPersonalDescription" rows="6" placeholder="Tell us more about yourself..." onChange={handleInputChange.bind(this)} ></textarea>
                                         </div>
                                     </div>
                                     <div className="form-row d-flex flex-row-reverse">
-                                        <button type="button" name="savePersonalInfo" className="btn saveButton" value="Save">Save</button>
+                                        <button type="button" name="save" className="btn saveButton" value="Save" onClick={this.handleEditSubmit.bind(this)}>Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -157,7 +156,7 @@ export default class Edit extends Component {
                         </div>
                         <div id="collapseEducation" className="collapse show" aria-labelledby="educationHeading" data-parent="#accordion">
                             <div className="card-body">
-                                <form onSubmit={this.handleEditSubmit}>
+                                <form>
                                     {/* FULL NAME */}
                                     <div className="form-group row">
                                         {/* <label htmlFor="inputSchoolName">School Name</label> */}
@@ -165,7 +164,7 @@ export default class Edit extends Component {
                                             education.map(item => {
                                                 const { clubs, courseworks, honors, schoolName, status } = item;
                                                 return (
-                                                    <div>
+                                                    <div style={{backgroundColor: "lightgray", padding: "12px", marginBottom: "12px"}}>
                                                         <span>School Name: {schoolName}</span>
                                                         <br />
                                                         <span>Status: {status}</span>
@@ -213,7 +212,7 @@ export default class Edit extends Component {
                                         </div>
                                     </div> */}
                                     <div className="form-row d-flex flex-row-reverse">
-                                        <button type="button" name="savePersonalInfo" className="btn saveButton" value="Save">Save</button>
+                                        <button type="button" name="education" className="btn saveButton" value="save" onClick={this.handleEditSubmit.bind(this)}>Save</button>
                                     </div>
                                 </form>
                             </div>

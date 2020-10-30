@@ -3,7 +3,7 @@ export function handleInputChange(e) {
     this.setState({ [name]: value });
 }
 
-// (Add Button) Retrieve Input
+// (Add (+) Button) Retrieve Input
 export function handleRetrieveInput(e, thisValue, arrayName) {
 
     // Plural = arrayName
@@ -18,29 +18,42 @@ export function handleRetrieveInput(e, thisValue, arrayName) {
     thisValue.setState({ [name]: '' });
 }
 
-// Called when Add Button is Clicked
+// Called when Add (+) Button is Clicked
+// Adds input to component array
 export function setComponentArray(inputText, arrayName) {
     this.setState(currState => {
         return { [arrayName]: [...currState[arrayName], inputText] };
     });
 }
 
-export function handleSubmit(e, buttonClicked) {
+// Save, Next, Skip Button Handlers
+export function handleSubmit(e) {
+    const { name, value } = e.target;
 
-    if (buttonClicked === "submitAchievement") {
+    if (value === "save") {
         // Don't skip - push to education array
-        this.props.handleInformationSubmit(e, "achievements", this.state, false);
-    } else if (buttonClicked === "newAchievement") {
-        // Clear values of form
-        this.setState({
-            companyName: '',
-            position: '',
-            contributions: []
-        });
-    } else if (buttonClicked === "nextComponent") {
-        // Skip - don't push anything education array
-        this.props.handleInformationSubmit(e, "achievements", this.state, true);
-    }
+        this.props.handleInformationSubmit(e, name, this.state, false);
 
+    } else if (value === "newState") {
+        // Clear values of form
+        this.setState((obj) => {
+            const newState = { ...obj };
+
+            for (let item in newState) {
+                if (Array.isArray(newState[item])) {
+                    newState[item] = "";
+                } else if(item === "status"){
+                    newState[item] = "Undegraduate";
+                } else {
+                    newState[item] = "";
+                }
+            }
+
+            return newState;
+        });
+    } else if (value === "nextButton") {
+        // Skip - don't push anything education array
+        this.props.handleInformationSubmit(e, name, this.state, true);
+    }
 }
 

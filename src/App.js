@@ -22,7 +22,7 @@ class App extends Component {
 
   state = {
     // components: ["information", "education", "achievements", "skills", "awards", "edit", "resume"],
-    components: ["education", "edit"],
+    components: ["edit", "resume"],
     personalInfo: {
       name: '',
       mobileNo: '',
@@ -50,7 +50,6 @@ class App extends Component {
     e.preventDefault();
 
     if (formName === "achievements" || formName === "education") {
-
       if (!skip) {
         this.setState(prevState => {
           // Passes OBJECT
@@ -77,6 +76,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     let renderedComponent = null;
     const { components, personalInfo } = this.state;
 
@@ -136,8 +136,6 @@ class App extends Component {
         )
         break;
     }
-
-    // console.log(this.state);
 
     return (
       <div className={"App container"}>

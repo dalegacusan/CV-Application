@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {handleInputChange, handleRetrieveInput} from "../../HelperFunctions/componentFormHandler";
+import { handleInputChange, handleRetrieveInput } from "../../HelperFunctions/componentFormHandler";
 
 export default class Coursework extends Component {
 
