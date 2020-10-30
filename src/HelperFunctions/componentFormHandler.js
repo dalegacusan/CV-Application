@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 export function handleInputChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -22,7 +24,7 @@ export function handleRetrieveInput(e, thisValue, arrayName) {
 // Adds input to component array
 export function setComponentArray(inputText, arrayName) {
     this.setState(currState => {
-        return { [arrayName]: [...currState[arrayName], inputText] };
+        return { [arrayName]: [...currState[arrayName], {id: uuidv4(), text: inputText}] };
     });
 }
 

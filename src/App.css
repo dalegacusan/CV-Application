@@ -72,3 +72,13 @@ body{
     background-color: #1d8b37;
     color: white;
 }
+
+.deleteButton{
+    background-color: #FF6D6A;
+    color: white;
+}
+
+.deleteButton:hover{
+    background-color:  #D22730;
+    color: white;
+}

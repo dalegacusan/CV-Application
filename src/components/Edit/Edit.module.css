@@ -1,0 +1,23 @@
+.buttonContainer{
+    margin: 12px 0;
+}
+
+.buttonContainer button{
+    background-color: black;
+}
+
+.arrayGroup{
+    border: 1px solid rgb(199, 199, 199);
+    padding: 18px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    background-color: rgb(253, 253, 253);
+}
+
+.itemsGroup{
+    padding: 0.8px 0;
+}
+
+.itemsGroup input, .itemsGroup button{
+    border-radius: 0;
+}

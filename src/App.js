@@ -22,7 +22,7 @@ class App extends Component {
 
   state = {
     // components: ["information", "education", "achievements", "skills", "awards", "edit", "resume"],
-    components: ["edit", "resume"],
+    components: ["skills", "awards", "edit", "resume"],
     personalInfo: {
       name: '',
       mobileNo: '',

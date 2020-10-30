@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { handleInputChange, setComponentArray, handleSubmit } from "../../HelperFunctions/componentFormHandler";
 
 export default class Skills extends Component {
 
@@ -33,7 +34,7 @@ export default class Skills extends Component {
                         <div className="form-group col-md-12">
                             <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <button type="button" className="btn customButton" onClick={this.setSkill}>+</button>
+                                    <button type="button" name="skillDescription" className="btn customButton" onClick={this.setSkill}>+</button>
                                 </div>
                                 <input type="text" name="skillDescription" value={this.state.skillDescription} className="form-control" id="inputSkill" placeholder="Skill Description" onChange={this.handleInputChange} />
                             </div>
