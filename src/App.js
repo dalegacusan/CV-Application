@@ -33,6 +33,7 @@ class App extends Component {
     },
     education: [
       {
+        id: "3424gfd432f",
         schoolName: 'De La Salle University',
         status: 'Undergraduate',
         courseworks: [
@@ -51,6 +52,7 @@ class App extends Component {
         ]
       },
       {
+        id: "fdsgsf23432dfsdf",
         schoolName: 'Colegio San Agustin Makati',
         status: 'Graduate',
         courseworks: [
@@ -105,12 +107,32 @@ class App extends Component {
   };
 
   // Make a way to make the state being modified to be dynamic (not stuck to personalInfo)
-  handleInputChange = (e, formName) => {
+  handleInputChange = (e, formName, schoolID) => {
     const { name, value } = e.target;
 
-    this.setState(currState => {
-      return currState[formName][name] = value;
+    this.setState(prevState => {
+
+      const currState = { ...prevState };
+
+      if (formName === "education") {
+
+        for (let i = 0; i < currState.education.length; i++) {
+          const currentObj = currState.education[i];
+
+          if (currentObj.id === schoolID) {
+            currentObj[name] = value;
+            return currState[formName][name] = currentObj;
+          }
+
+
+        }
+
+      } else {
+        return currState[formName][name] = value;
+      }
+
     });
+
   }
 
   handleInformationSubmit = (e, formName, subComponentState, skip) => {
@@ -146,6 +168,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     let renderedComponent = null;
     const { components, personalInfo } = this.state;
 

@@ -4,12 +4,17 @@ import { handleDelete } from "../../HelperFunctions/componentFormHandler";
 
 export default class Edit extends Component {
 
-    handleEditSubmit = (e, action, newState) => {
+    // Save Button Function
+    // Edit Inputs Function
 
+    handleEditSubmit = (e, action, newState) => {
         if (action === "delete") {
             this.props.handleInformationSubmit(e, "edit", newState);
-        }
+        } else {
+            const currState = { ...this.props.state };
 
+            console.log(currState);
+        }
     }
 
     render() {
@@ -96,22 +101,22 @@ export default class Edit extends Component {
                             <div className="card-body">
                                 <form>
                                     {
-                                        education.map(school => {
+                                        education.map((school, key) => {
                                             const { clubs, courseworks, honors, schoolName, status } = school;
                                             return (
-                                                <div className={classes.arrayGroup}>
+                                                <div key={key} className={classes.arrayGroup}>
                                                     {/* SCHOOL NAME */}
                                                     <div className="form-group row">
                                                         <label htmlFor="inputSchoolName" className="col-sm-3 col-form-label">School Name: </label>
                                                         <div className="col-sm-9">
-                                                            <input type="text" name="schoolName" value={schoolName} className="form-control" id="inputSchoolName" placeholder="School Name" onChange={handleInputChange.bind(this)} />
+                                                            <input type="text" name="schoolName" value={schoolName} className="form-control" id="inputSchoolName" placeholder="School Name" onChange={(e) => handleInputChange(e, "education", school.id)} />
                                                         </div>
                                                     </div>
                                                     {/* STATUS */}
                                                     <div className="form-group row">
                                                         <label htmlFor="inputSchoolStatus" className="col-sm-3 col-form-label">Status: </label>
                                                         <div className="col-sm-9">
-                                                            <select className="form-control" name="status" value={status} id="inputSchoolStatus" onChange={handleInputChange.bind(this)}>
+                                                            <select className="form-control" name="status" value={status} id="inputSchoolStatus" onChange={(e) => handleInputChange(e, "education", school.id)}>
                                                                 <option>Undergraduate</option>
                                                                 <option>Graduate</option>
                                                             </select>
@@ -177,7 +182,7 @@ export default class Edit extends Component {
                                     }
 
                                     <div className="form-row d-flex flex-row-reverse">
-                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit.bind(this)}>Save</button>
+                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -236,7 +241,7 @@ export default class Edit extends Component {
                                     }
 
                                     <div className="form-row d-flex flex-row-reverse">
-                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit.bind(this)}>Save</button>
+                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
                                     </div>
                                 </form>
 
@@ -275,7 +280,7 @@ export default class Edit extends Component {
                                     </div>
                                 </form>
                                 <div className="form-row d-flex flex-row-reverse">
-                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit.bind(this)}>Save</button>
+                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
                                 </div>
                             </div>
                         </div>
@@ -312,7 +317,7 @@ export default class Edit extends Component {
                                     </div>
                                 </form>
                                 <div className="form-row d-flex flex-row-reverse">
-                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit.bind(this)}>Save</button>
+                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
                                 </div>
                             </div>
                         </div>

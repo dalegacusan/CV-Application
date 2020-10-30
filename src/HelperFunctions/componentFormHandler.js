@@ -34,7 +34,7 @@ export function handleSubmit(e) {
 
     if (value === "save") {
         // Don't skip - push to education array
-        this.props.handleInformationSubmit(e, name, this.state, false);
+        this.props.handleInformationSubmit(e, name, { ...this.state, id: uuidv4() }, false);
 
     } else if (value === "newState") {
         // Clear values of form
@@ -69,13 +69,13 @@ export function handleDelete(e, thisValue, key) {
         loop1:
         for (let i = 0; i < currState[name].length; i++) {
             const currentObj = currState[name][i];
+
             loop2:
             for (let j = 0; j < currentObj[value].length; j++) {
                 const item = currentObj[value][j];
 
                 if (item.id === key) {
-
-                    console.log(currentObj[value].splice(j, 1));
+                    currentObj[value].splice(j, 1);
 
                     break loop1;
                 }
