@@ -1,4 +1,4 @@
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export function handleInputChange(e) {
     const { name, value } = e.target;
@@ -24,7 +24,7 @@ export function handleRetrieveInput(e, thisValue, arrayName) {
 // Adds input to component array
 export function setComponentArray(inputText, arrayName) {
     this.setState(currState => {
-        return { [arrayName]: [...currState[arrayName], {id: uuidv4(), text: inputText}] };
+        return { [arrayName]: [...currState[arrayName], { id: uuidv4(), text: inputText }] };
     });
 }
 
@@ -44,7 +44,7 @@ export function handleSubmit(e) {
             for (let item in newState) {
                 if (Array.isArray(newState[item])) {
                     newState[item] = "";
-                } else if(item === "status"){
+                } else if (item === "status") {
                     newState[item] = "Undegraduate";
                 } else {
                     newState[item] = "";
@@ -59,3 +59,39 @@ export function handleSubmit(e) {
     }
 }
 
+export function handleDelete(e, thisValue, key) {
+
+    const { name, value } = e.target;
+    const currState = { ...thisValue.props.state };
+
+    if (name === "achievements" || name === "education") {
+
+        loop1:
+        for (let i = 0; i < currState[name].length; i++) {
+            const currentObj = currState[name][i];
+            loop2:
+            for (let j = 0; j < currentObj[value].length; j++) {
+                const item = currentObj[value][j];
+
+                if (item.id === key) {
+
+                    console.log(currentObj[value].splice(j, 1));
+
+                    break loop1;
+                }
+            }
+        }
+
+    } else {
+        for (let i = 0; i < currState[name].length; i++) {
+            const currentItem = currState[name][i];
+
+            if (currentItem.id === key) {
+                currState[name].splice(i, 1);
+                break;
+            }
+        }
+    }
+
+    thisValue.handleEditSubmit(e, "delete", currState);
+}

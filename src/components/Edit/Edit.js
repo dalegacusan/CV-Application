@@ -1,79 +1,20 @@
 import React, { Component } from "react";
 import classes from "./Edit.module.css";
+import { handleDelete } from "../../HelperFunctions/componentFormHandler";
 
 export default class Edit extends Component {
 
-    handleEditSubmit = (e) => {
-        e.preventDefault();
+    handleEditSubmit = (e, action, newState) => {
 
-        this.props.handleInformationSubmit();
+        if (action === "delete") {
+            this.props.handleInformationSubmit(e, "edit", newState);
+        }
+
     }
 
     render() {
-
-        const mockState = {
-            personalInfo: {
-                name: 'John Doe',
-                mobileNo: '0123456789',
-                email: 'johndoe@gmail.com',
-                website: 'https://github.com/dalegacusan/',
-                location: 'Nashville, Tennessee',
-                personalDescription: 'Motivated student (3.6/4.0) who demonstrates strong work ethic and creative ability. Seeking to apply my graphic design skills and artistic drive as a summer intern at your company. Will leverage proven experience as a competent designer to contribute to company goals and needs.',
-            },
-            education: [
-                {
-                    schoolName: 'De La Salle University',
-                    status: 'Undergraduate',
-                    courseworks: ["Intro to Graphic Design", "AP Art", "Yearbook", "Computer Applications"],
-                    honors: ["Member of the National Honors Society and National Art Education Association"],
-                    clubs: ["Yearbook Club", "Santa Monica Newspaper", "Spanish Club"],
-                },
-                {
-                    schoolName: 'Colegio San Agustin Makati',
-                    status: 'Graduate',
-                    courseworks: ["AP Art", "Yearbook", "Computer Applications"],
-                    honors: ["Member of the Graphics Art Association", "Basketball MVP"],
-                    clubs: ["Yearbook Club", "Santa Monica Newspaper"],
-                }
-            ],
-            achievements: [
-                {
-                    companyName: 'Yearbook Club',
-                    position: 'Yearbook Design Team Lead',
-                    contributions: [
-                        "Created a Yearbook logo designed to incorporate school mascot and colors; opted to use coat paper in 2016, which improved photo quality and increased profits by 5%",
-                        "Arrange all club photos and pages to correspond to yearbook theme",
-                        "Trained and supervised 2 sophomore students in graphic design"
-                    ]
-                },
-                {
-                    companyName: 'Santa Monica Newspaper',
-                    position: 'Graphic Designer',
-                    contributions: [
-                        "Procured advertising for school paper, saving organization 25% in costs",
-                        "Edited and curated photos used for school paper; increasing readership by 15%",
-                        "Custom design page layouts to fit articles, photos, and advertisements into strict format",
-                        "Contributed to school's online publication by designing page layouts to accommodate mobile screens",
-                    ]
-                }
-            ],
-            skills: [
-                "Proficient in Photoshop and Adobe Creative Suite",
-                "Basic knowledge of HTML",
-                "Basic knowledge of Adobe Dream Weaver",
-                "Great photographer",
-                "Keen eye for aesthetics with good understanding of image gradients",
-                "Intermediate speaking level in Spanish",
-            ],
-            awards: [
-                "Nominated for Macmillan Prize for Illustration in 2016",
-                "Submitted artwork to Ocean Awareness Student Art Contest 2016",
-                "Came in 2nd place in the Applied Arts 2016 Student Awards for submitting graphic design work under the category of Advertising",
-            ]
-        }
-
         const { handleInputChange, state } = this.props;
-        const { personalInfo, education, achievements, skills, awards } = mockState;
+        const { personalInfo, education, achievements, skills, awards } = state;
         const { name, mobileNo, email, website, location, personalDescription } = personalInfo;
 
         return (
@@ -180,18 +121,18 @@ export default class Edit extends Component {
                                                     <div className="form-group row">
                                                         <label className="col-sm-3 col-form-label">Courseworks: </label>
                                                         <div className="col-sm-9">
-                                                                {
-                                                                    courseworks.map(coursework => {
-                                                                        return (
-                                                                            <div className={`input-group ${classes.itemsGroup}`}>
-                                                                                <div className="input-group-prepend">
-                                                                                    <button type="button" name="coursework" className="btn deleteButton" >-</button>
-                                                                                </div>
-                                                                                <input type="text" name="coursework" className="form-control" placeholder="Relevant Coursework" value={coursework} />
+                                                            {
+                                                                courseworks.map(coursework => {
+                                                                    return (
+                                                                        <div className={`input-group ${classes.itemsGroup}`}>
+                                                                            <div className="input-group-prepend">
+                                                                                <button type="button" name="education" value="courseworks" className="btn deleteButton" onClick={(e) => handleDelete(e, this, coursework.id)}>-</button>
                                                                             </div>
-                                                                        )
-                                                                    })
-                                                                }
+                                                                            <input type="text" name="coursework" className="form-control" placeholder="Relevant Coursework" value={coursework.text} />
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
                                                         </div>
                                                     </div>
                                                     {/* HONORS */}
@@ -203,9 +144,9 @@ export default class Edit extends Component {
                                                                     return (
                                                                         <div className={`input-group ${classes.itemsGroup}`}>
                                                                             <div className="input-group-prepend">
-                                                                                <button type="button" name="honor" className="btn deleteButton" >-</button>
+                                                                                <button type="button" name="education" value="honors" className="btn deleteButton" onClick={(e) => handleDelete(e, this, honor.id)}>-</button>
                                                                             </div>
-                                                                            <input type="text" name="honor" className="form-control" placeholder="Honors" value={honor} />
+                                                                            <input type="text" name="honor" className="form-control" placeholder="Honors" value={honor.text} />
                                                                         </div>
                                                                     )
                                                                 })
@@ -221,9 +162,9 @@ export default class Edit extends Component {
                                                                     return (
                                                                         <div className={`input-group ${classes.itemsGroup}`}>
                                                                             <div className="input-group-prepend">
-                                                                                <button type="button" name="club" className="btn deleteButton" >-</button>
+                                                                                <button type="button" name="education" value="clubs" className="btn deleteButton" onClick={(e) => handleDelete(e, this, club.id)}>-</button>
                                                                             </div>
-                                                                            <input type="text" name="club" className="form-control" placeholder="Clubs" value={club} />
+                                                                            <input type="text" name="club" className="form-control" placeholder="Clubs" value={club.text} />
                                                                         </div>
                                                                     )
                                                                 })
@@ -280,9 +221,9 @@ export default class Edit extends Component {
                                                                     return (
                                                                         <div className={`input-group ${classes.itemsGroup}`}>
                                                                             <div className="input-group-prepend">
-                                                                                <button type="button" name="contribution" className="btn deleteButton" >-</button>
+                                                                                <button type="button" name="achievements" value="contributions" className="btn deleteButton" onClick={(e) => handleDelete(e, this, contribution.id)}>-</button>
                                                                             </div>
-                                                                            <input type="text" name="contribution" className="form-control" placeholder="Honors" value={contribution} />
+                                                                            <input type="text" name="contribution" className="form-control" placeholder="Honors" value={contribution.text} />
                                                                         </div>
                                                                     );
                                                                 })
@@ -323,9 +264,9 @@ export default class Edit extends Component {
                                                     return (
                                                         <div className={`input-group ${classes.itemsGroup}`}>
                                                             <div className="input-group-prepend">
-                                                                <button type="button" name="skillDescription" className="btn deleteButton" >-</button>
+                                                                <button type="button" name="skills" className="btn deleteButton" onClick={(e) => handleDelete(e, this, skill.id)}>-</button>
                                                             </div>
-                                                            <input type="text" name="skillDescription" className="form-control" placeholder="Skill Description" value={skill} />
+                                                            <input type="text" name="skillDescription" className="form-control" placeholder="Skill Description" value={skill.text} />
                                                         </div>
                                                     );
                                                 })
@@ -356,13 +297,13 @@ export default class Edit extends Component {
                                         <label className="col-sm-4 col-form-label">Awards, Honors, and Honorary Mentions</label>
                                         <div className="col-sm-8">
                                             {
-                                                awards.map(award => {
+                                                awards.map((award, key) => {
                                                     return (
-                                                        <div className={`input-group ${classes.itemsGroup}`}>
+                                                        <div key={key} className={`input-group ${classes.itemsGroup}`}>
                                                             <div className="input-group-prepend">
-                                                                <button type="button" name="award" className="btn deleteButton" >-</button>
+                                                                <button type="button" name="awards" className="btn deleteButton" onClick={(e) => handleDelete(e, this, award.id)}>-</button>
                                                             </div>
-                                                            <input type="text" name="award" className="form-control" placeholder="Achievement Description" value={award} />
+                                                            <input type="text" name="award" className="form-control" placeholder="Achievement Description" value={award.text} />
                                                         </div>
                                                     );
                                                 })

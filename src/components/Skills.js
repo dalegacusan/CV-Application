@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { handleInputChange, setComponentArray, handleSubmit } from "../../HelperFunctions/componentFormHandler";
+import {v4 as uuidv4} from 'uuid';
+import { handleInputChange, setComponentArray, handleSubmit } from "../HelperFunctions/componentFormHandler";
 
 export default class Skills extends Component {
 
@@ -16,7 +17,7 @@ export default class Skills extends Component {
 
     setSkill = () => {
         this.setState(currState => {
-            return { skills: [...currState.skills, this.state.skillDescription] };
+            return { skills: [...currState.skills, {id: uuidv4(), text: this.state.skillDescription}] };
         });
 
         this.setState({ skillDescription: '' });

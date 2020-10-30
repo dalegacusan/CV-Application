@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 export default class Awards extends Component {
 
@@ -15,7 +16,7 @@ export default class Awards extends Component {
 
     setAward = () => {
         this.setState(currState => {
-            return { awards: [...currState.awards, this.state.awardDescription] };
+            return { awards: [...currState.awards, {id: uuidv4(), text: this.state.awardDescription}] };
         });
 
         this.setState({ awardDescription: '' });
