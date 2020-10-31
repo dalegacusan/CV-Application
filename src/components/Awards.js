@@ -16,6 +16,7 @@ export default class Awards extends Component {
 
     setAward = () => {
         this.setState(currState => {
+            
             return { awards: [...currState.awards, {id: uuidv4(), text: this.state.awardDescription}] };
         });
 

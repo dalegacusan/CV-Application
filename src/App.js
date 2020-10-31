@@ -21,8 +21,7 @@ import Resume from './components/Resume/Resume';
 class App extends Component {
 
   state = {
-    // components: ["information", "education", "achievements", "skills", "awards", "edit", "resume"],
-    components: ["edit", "resume"],
+    components: ["information", "education", "achievements", "skills", "awards", "edit", "resume"],
     personalInfo: {
       name: 'John Doe',
       mobileNo: '0123456789',
@@ -46,9 +45,9 @@ class App extends Component {
           { id: "4b2d9b5ds", text: "Member of the National Honors Society and National Art Education Association" },
         ],
         clubs: [
-          { id: "55af1e37", text: "Yearbook Club" },
-          { id: "073446d8", text: "Santa Monica Newspaper" },
-          { id: "b070a1e42e4fc392", text: "Spanish Club" }
+          { id: "55a3f1e37", text: "Yearbook Club" },
+          { id: "0734436d8", text: "Santa Monica Newspaper" },
+          { id: "b0703a1e42e4fc392", text: "Spanish Club" }
         ]
       },
       {
@@ -94,7 +93,7 @@ class App extends Component {
     skills: [
       { id: "2c5ea4c0", text: "Proficient in Photoshop and Adobe Creative Suite" },
       { id: "4067", text: "Basic knowledge of HTML" },
-      { id: "4067", text: "Basic knowledge of Adobe Dream Weaver" },
+      { id: "12312321321", text: "Basic knowledge of Adobe Dream Weaver" },
       { id: "8bad", text: "Great photographer" },
       { id: "9b1deb4d3b7d", text: "Keen eye for aesthetics with good understanding of image gradients" },
       { id: "710b962e", text: "Intermediate speaking level in Spanish" },
@@ -106,28 +105,73 @@ class App extends Component {
     ]
   };
 
-  // Make a way to make the state being modified to be dynamic (not stuck to personalInfo)
-  handleInputChange = (e, formName, schoolID) => {
+  // state = {
+  //   components: ["information", "education", "achievements", "skills", "awards", "edit", "resume"],
+  //   personalInfo: {
+  //     name: '',
+  //     mobileNo: '',
+  //     email: '',
+  //     website: '',
+  //     location: '',
+  //     personalDescription: '',
+  //   },
+  //   education: [],
+  //   achievements: [],
+  //   awards: [],
+  //   skills: []
+  // };
+
+  handleInputChange = (e, formName, id) => {
     const { name, value } = e.target;
 
     this.setState(prevState => {
 
       const currState = { ...prevState };
 
-      if (formName === "education") {
+      if (formName === "education" || formName === "achievements" || formName === "skills" || formName === "awards") {
 
-        for (let i = 0; i < currState.education.length; i++) {
-          const currentObj = currState.education[i];
+        // Input Groups
+        if (name === "coursework" || name === "honor" || name === "club" || name === "contribution") {
+          for (let i = 0; i < currState[formName].length; i++) {
+            const currentObj = currState[formName][i];
 
-          if (currentObj.id === schoolID) {
-            currentObj[name] = value;
-            return currState[formName][name] = currentObj;
+            const itemsArray = currState[formName][i][`${name}s`];
+
+            for (let j = 0; j < itemsArray.length; j++) {
+              const item = itemsArray[j];
+              if (item.id === id) {
+                currentObj[`${name}s`][j] = { id: item.id, text: value };
+
+                return currState[formName][i] = currentObj;
+              }
+            }
+
           }
+        } else if (name === "skillDescription" || name === "award") {
+          for (let i = 0; i < currState[formName].length; i++) {
+            const currentObj = currState[formName][i];
 
+            if (currentObj.id === id) {
+              currentObj.text = value;
 
+              return currState[formName][i] = currentObj;
+            }
+          }
+        } else {
+          // For Sole Inputs of each Card
+          for (let i = 0; i < currState[formName].length; i++) {
+            const currentObj = currState[formName][i];
+
+            if (currentObj.id === id) {
+              currentObj[name] = value;
+
+              return currState[formName][name] = currentObj;
+            }
+          }
         }
 
       } else {
+        // For Personal Information Card Only
         return currState[formName][name] = value;
       }
 

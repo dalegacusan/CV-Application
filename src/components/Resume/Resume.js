@@ -4,61 +4,7 @@ import { Helmet } from "react-helmet";
 
 export default function Resume({ state }) {
 
-    const mockState = {
-        personalInfo: {
-            name: 'John Doe',
-            mobileNo: '0123456789',
-            email: 'johndoe@gmail.com',
-            website: 'https://github.com/dalegacusan/',
-            location: 'Nashville, Tennessee',
-            personalDescription: 'Motivated student (3.6/4.0) who demonstrates strong work ethic and creative ability. Seeking to apply my graphic design skills and artistic drive as a summer intern at your company. Will leverage proven experience as a competent designer to contribute to company goals and needs.',
-        },
-        education: [
-            {
-                schoolName: 'De La Salle University',
-                status: 'Graduate',
-                courseworks: ["Intro to Graphic Design", "AP Art", "Yearbook", "Computer Applications"],
-                honors: ["Member of the National Honors Society and National Art Education Association"],
-                clubs: ["Yearbook Club", "Santa Monica Newspaper", "Spanish Club"],
-            }
-        ],
-        achievements: [
-            {
-                companyName: 'Yearbook Club',
-                position: 'Yearbook Design Team Lead',
-                contributions: [
-                    "Created a Yearbook logo designed to incorporate school mascot and colors; opted to use coat paper in 2016, which improved photo quality and increased profits by 5%",
-                    "Arrange all club photos and pages to correspond to yearbook theme",
-                    "Trained and supervised 2 sophomore students in graphic design"
-                ]
-            },
-            {
-                companyName: 'Santa Monica Newspaper',
-                position: 'Graphic Designer',
-                contributions: [
-                    "Procured advertising for school paper, saving organization 25% in costs",
-                    "Edited and curated photos used for school paper; increasing readership by 15%",
-                    "Custom design page layouts to fit articles, photos, and advertisements into strict format",
-                    "Contributed to school's online publication by designing page layouts to accommodate mobile screens",
-                ]
-            }
-        ],
-        skills: [
-            "Proficient in Photoshop and Adobe Creative Suite",
-            "Basic knowledge of HTML",
-            "Basic knowledge of Adobe Dream Weaver",
-            "Great photographer",
-            "Keen eye for aesthetics with good understanding of image gradients",
-            "Intermediate speaking level in Spanish",
-        ],
-        awards: [
-            "Nominated for Macmillan Prize for Illustration in 2016",
-            "Submitted artwork to Ocean Awareness Student Art Contest 2016",
-            "Came in 2nd place in the Applied Arts 2016 Student Awards for submitting graphic design work under the category of Advertising",
-        ]
-    }
-
-    const { personalInfo, education, achievements, skills, awards } = mockState;
+    const { personalInfo, education, achievements, skills, awards } = state;
 
     const { name, mobileNo, email, website, location, personalDescription } = personalInfo;
 

@@ -4,20 +4,22 @@ import { handleDelete } from "../../HelperFunctions/componentFormHandler";
 
 export default class Edit extends Component {
 
-    // Save Button Function
-    // Edit Inputs Function
+    // Save Button Function (maybe collapse the card?)
 
-    handleEditSubmit = (e, action, newState) => {
-        if (action === "delete") {
+    handleDelete = (e, newState) => {
             this.props.handleInformationSubmit(e, "edit", newState);
-        } else {
-            const currState = { ...this.props.state };
+    }
 
-            console.log(currState);
-        }
+    handleSaveClick = () => {
+        this.setState({ hideCard: true });
+    }
+
+    handleCardClick = () => {
+        this.setState({ hideCard: false });
     }
 
     render() {
+
         const { handleInputChange, state } = this.props;
         const { personalInfo, education, achievements, skills, awards } = state;
         const { name, mobileNo, email, website, location, personalDescription } = personalInfo;
@@ -81,7 +83,7 @@ export default class Edit extends Component {
                                         </div>
                                     </div>
                                     <div className="form-row d-flex flex-row-reverse">
-                                        <button type="button" name="save" className="btn saveButton" value="Save" onClick={this.handleEditSubmit}>Save</button>
+                                        <button type="button" name="save" className="btn saveButton" value="Save" onClick={this.handleSaveClick}>Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -127,13 +129,13 @@ export default class Edit extends Component {
                                                         <label className="col-sm-3 col-form-label">Courseworks: </label>
                                                         <div className="col-sm-9">
                                                             {
-                                                                courseworks.map(coursework => {
+                                                                courseworks.map((coursework, key) => {
                                                                     return (
-                                                                        <div className={`input-group ${classes.itemsGroup}`}>
+                                                                        <div key={key} className={`input-group ${classes.itemsGroup}`}>
                                                                             <div className="input-group-prepend">
                                                                                 <button type="button" name="education" value="courseworks" className="btn deleteButton" onClick={(e) => handleDelete(e, this, coursework.id)}>-</button>
                                                                             </div>
-                                                                            <input type="text" name="coursework" className="form-control" placeholder="Relevant Coursework" value={coursework.text} />
+                                                                            <input type="text" name="coursework" className="form-control" placeholder="Relevant Coursework" value={coursework.text} onChange={(e) => handleInputChange(e, "education", coursework.id)} />
                                                                         </div>
                                                                     )
                                                                 })
@@ -145,13 +147,13 @@ export default class Edit extends Component {
                                                         <label htmlFor="inputSchoolName" className="col-sm-3 col-form-label">Honors: </label>
                                                         <div className="col-sm-9">
                                                             {
-                                                                honors.map(honor => {
+                                                                honors.map((honor, key) => {
                                                                     return (
-                                                                        <div className={`input-group ${classes.itemsGroup}`}>
+                                                                        <div key={key} className={`input-group ${classes.itemsGroup}`}>
                                                                             <div className="input-group-prepend">
                                                                                 <button type="button" name="education" value="honors" className="btn deleteButton" onClick={(e) => handleDelete(e, this, honor.id)}>-</button>
                                                                             </div>
-                                                                            <input type="text" name="honor" className="form-control" placeholder="Honors" value={honor.text} />
+                                                                            <input type="text" name="honor" className="form-control" placeholder="Honors" value={honor.text} onChange={(e) => handleInputChange(e, "education", honor.id)} />
                                                                         </div>
                                                                     )
                                                                 })
@@ -163,13 +165,13 @@ export default class Edit extends Component {
                                                         <label htmlFor="inputSchoolName" className="col-sm-3 col-form-label">Clubs: </label>
                                                         <div className="col-sm-9">
                                                             {
-                                                                clubs.map(club => {
+                                                                clubs.map((club, key) => {
                                                                     return (
-                                                                        <div className={`input-group ${classes.itemsGroup}`}>
+                                                                        <div key={key} className={`input-group ${classes.itemsGroup}`}>
                                                                             <div className="input-group-prepend">
                                                                                 <button type="button" name="education" value="clubs" className="btn deleteButton" onClick={(e) => handleDelete(e, this, club.id)}>-</button>
                                                                             </div>
-                                                                            <input type="text" name="club" className="form-control" placeholder="Clubs" value={club.text} />
+                                                                            <input type="text" name="club" className="form-control" placeholder="Clubs" value={club.text} onChange={(e) => handleInputChange(e, "education", club.id)} />
                                                                         </div>
                                                                     )
                                                                 })
@@ -182,7 +184,7 @@ export default class Edit extends Component {
                                     }
 
                                     <div className="form-row d-flex flex-row-reverse">
-                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
+                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleSaveClick}>Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -202,33 +204,33 @@ export default class Edit extends Component {
                             <div className="card-body">
                                 <form>
                                     {
-                                        achievements.map(achievement => {
+                                        achievements.map((achievement, key) => {
                                             const { companyName, position, contributions } = achievement;
                                             return (
-                                                <div className={classes.arrayGroup}>
+                                                <div key={key} className={classes.arrayGroup}>
                                                     <div className="form-group row">
                                                         <label htmlFor="inputCompanyName" className="col-sm-4 col-form-label">Company/Organization Name</label>
                                                         <div className="col-sm-8">
-                                                            <input type="text" name="companyName" value={companyName} className="form-control" id="inputCompanyName" placeholder="Company/Organization Name" />
+                                                            <input type="text" name="companyName" value={companyName} className="form-control" id="inputCompanyName" placeholder="Company/Organization Name" onChange={(e) => handleInputChange(e, "achievements", achievement.id)} />
                                                         </div>
                                                     </div>
                                                     <div className="form-group row">
                                                         <label htmlFor="inputPosition" className="col-sm-4 col-form-label">Position/Role</label>
                                                         <div className="col-sm-8">
-                                                            <input type="text" name="position" value={position} className="form-control" id="inputPosition" placeholder="Position" />
+                                                            <input type="text" name="position" value={position} className="form-control" id="inputPosition" placeholder="Position" onChange={(e) => handleInputChange(e, "achievements", achievement.id)} />
                                                         </div>
                                                     </div>
                                                     <div className="form-group row">
                                                         <label className="col-sm-4 col-form-label">Contributions</label>
                                                         <div className="col-sm-8">
                                                             {
-                                                                contributions.map(contribution => {
+                                                                contributions.map((contribution, key) => {
                                                                     return (
-                                                                        <div className={`input-group ${classes.itemsGroup}`}>
+                                                                        <div key={key} className={`input-group ${classes.itemsGroup}`}>
                                                                             <div className="input-group-prepend">
                                                                                 <button type="button" name="achievements" value="contributions" className="btn deleteButton" onClick={(e) => handleDelete(e, this, contribution.id)}>-</button>
                                                                             </div>
-                                                                            <input type="text" name="contribution" className="form-control" placeholder="Honors" value={contribution.text} />
+                                                                            <input type="text" name="contribution" className="form-control" placeholder="Honors" value={contribution.text} onChange={(e) => handleInputChange(e, "achievements", contribution.id)} />
                                                                         </div>
                                                                     );
                                                                 })
@@ -241,7 +243,7 @@ export default class Edit extends Component {
                                     }
 
                                     <div className="form-row d-flex flex-row-reverse">
-                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
+                                        <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleSaveClick}>Save</button>
                                     </div>
                                 </form>
 
@@ -265,13 +267,13 @@ export default class Edit extends Component {
                                         <label className="col-sm-4 col-form-label">Additional Skills</label>
                                         <div className="col-sm-8">
                                             {
-                                                skills.map(skill => {
+                                                skills.map((skill, key) => {
                                                     return (
-                                                        <div className={`input-group ${classes.itemsGroup}`}>
+                                                        <div key={key} className={`input-group ${classes.itemsGroup}`}>
                                                             <div className="input-group-prepend">
                                                                 <button type="button" name="skills" className="btn deleteButton" onClick={(e) => handleDelete(e, this, skill.id)}>-</button>
                                                             </div>
-                                                            <input type="text" name="skillDescription" className="form-control" placeholder="Skill Description" value={skill.text} />
+                                                            <input type="text" name="skillDescription" className="form-control" placeholder="Skill Description" value={skill.text} onChange={(e) => handleInputChange(e, "skills", skill.id)} />
                                                         </div>
                                                     );
                                                 })
@@ -280,7 +282,7 @@ export default class Edit extends Component {
                                     </div>
                                 </form>
                                 <div className="form-row d-flex flex-row-reverse">
-                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
+                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleSaveClick}>Save</button>
                                 </div>
                             </div>
                         </div>
@@ -308,7 +310,7 @@ export default class Edit extends Component {
                                                             <div className="input-group-prepend">
                                                                 <button type="button" name="awards" className="btn deleteButton" onClick={(e) => handleDelete(e, this, award.id)}>-</button>
                                                             </div>
-                                                            <input type="text" name="award" className="form-control" placeholder="Achievement Description" value={award.text} />
+                                                            <input type="text" name="award" className="form-control" placeholder="Achievement Description" value={award.text} onChange={(e) => handleInputChange(e, "awards", award.id)} />
                                                         </div>
                                                     );
                                                 })
@@ -317,14 +319,14 @@ export default class Edit extends Component {
                                     </div>
                                 </form>
                                 <div className="form-row d-flex flex-row-reverse">
-                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleEditSubmit}>Save</button>
+                                    <button type="button" name="save" className="btn saveButton" value="save" onClick={this.handleSaveClick}>Save</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={classes.buttonContainer}>
-                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.handleEditSubmit}>Create my CV</button>
+                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.props.handleInformationSubmit}>Create my CV</button>
                 </div>
             </div>
         );

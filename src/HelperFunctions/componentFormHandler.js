@@ -93,5 +93,5 @@ export function handleDelete(e, thisValue, key) {
         }
     }
 
-    thisValue.handleEditSubmit(e, "delete", currState);
+    thisValue.handleDelete(e, currState);
 }
