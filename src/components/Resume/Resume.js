@@ -8,6 +8,15 @@ export default function Resume({ state }) {
 
     const { name, mobileNo, email, website, location, personalDescription } = personalInfo;
 
+    const makeArray = (array) => {
+        const newArray = [];
+        for (let item of array) {
+            newArray.push(item.text);
+        }
+
+        return newArray.join(', ');
+    }
+
     return (
 
         <div className={classes.resumeWrapper}>
@@ -59,28 +68,25 @@ export default function Resume({ state }) {
                         {
                             education.map(school => {
                                 const { schoolName, status, courseworks, honors, clubs } = school;
-                                const courseworksList = courseworks.join(', ');
-                                const honorsList = honors.join(', ');
-                                const clubsList = clubs.join(', ');
 
                                 return (
-                                    <div>
+                                    <div className={classes.sectionContent}>
                                         <p className={classes.bold}>{schoolName}</p>
                                         <p style={{ fontStyle: "italic" }}>{status}</p>
 
                                         <div>
                                             <span className={classes.bold}>Relevant Coursework: </span>
-                                            <span>{courseworksList}</span>
+                                            {makeArray(courseworks)}
                                         </div>
 
                                         <div>
                                             <span className={classes.bold}>Honors: </span>
-                                            <span>{honorsList}</span>
+                                            {makeArray(honors)}
                                         </div>
 
                                         <div>
                                             <span className={classes.bold}>Clubs: </span>
-                                            <span>{clubsList}</span>
+                                            {makeArray(clubs)}
                                         </div>
                                     </div>
                                 );
@@ -108,7 +114,7 @@ export default function Resume({ state }) {
                                                 contributions.map(contribution => {
                                                     return (
                                                         <li>
-                                                            <span>{contribution}</span>
+                                                            <span>{contribution.text}</span>
                                                         </li>
                                                     )
                                                 })
@@ -132,7 +138,7 @@ export default function Resume({ state }) {
                                 skills.map(skill => {
                                     return (
                                         <li>
-                                            <span>{skill}</span>
+                                            <span>{skill.text}</span>
                                         </li>
                                     )
                                 })
@@ -151,7 +157,7 @@ export default function Resume({ state }) {
                                 awards.map(award => {
                                     return (
                                         <li>
-                                            <span>{award}</span>
+                                            <span>{award.text}</span>
                                         </li>
                                     )
                                 })

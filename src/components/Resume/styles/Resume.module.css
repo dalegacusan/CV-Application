@@ -42,6 +42,10 @@
     margin-top: 14px;
 }
 
+.sectionContent{
+    margin: 12px 0 0 0;
+}
+
 .personName{
     font-size: 28px;
 }
