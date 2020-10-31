@@ -1,0 +1,55 @@
+.resumeWrapper{
+    margin: 0 24 24 24px;
+}
+
+.wrapperFooter{
+    color: rgb(211, 211, 211);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.wrapperFooter p a{
+    color: #407EC9;
+}
+
+.resumeContainer{
+    background-color: #fff;
+    color: #000;
+    padding: 36px;
+    width: 100%!important;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+.resumeContainer p {
+    margin: 0;
+}
+
+.resumeSection{
+    margin: 12px 0 12px 0;
+}
+
+.sectionHeader{
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0 4px 14px;
+    border-bottom: 3px solid rgb(145, 145, 145);
+}
+
+.sectionBody{
+    margin-top: 14px;
+}
+
+.sectionContent{
+    margin: 12px 0 0 0;
+}
+
+.personName{
+    font-size: 28px;
+}
+
+.bold{
+    font-weight: bold;
+}

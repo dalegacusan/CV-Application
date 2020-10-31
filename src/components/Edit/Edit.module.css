@@ -1,0 +1,56 @@
+.buttonContainer{
+    margin: 12px 0;
+}
+
+.arrayGroup{
+    border: 1px solid rgb(199, 199, 199);
+    padding: 18px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    background-color: rgb(253, 253, 253);
+}
+
+.itemsGroup{
+    padding: 0.8px 0;
+}
+
+.itemsGroup input, .itemsGroup button{
+    border-radius: 0;
+
+}
+
+.toggleButton{
+    color: #212529;
+}
+
+.toggleButton:hover{
+    color: #474a4d;
+    text-decoration: none;
+}
+
+.toggleButton:focus{
+    text-decoration: none;
+}
+
+.toggleButton i {
+    margin-right: 12px;
+}
+
+.componentCard{
+    margin-bottom: 8px;
+}
+
+.cardHeader{
+    background: rgb(226,226,226);
+    background: linear-gradient(190deg, rgb(235, 235, 235) 0%, rgb(245, 245, 245) 100%);
+}
+
+.createCVButton{
+    background: rgb(25,25,25);
+    background: linear-gradient(0deg, rgb(39, 39, 39) 0%, rgba(59,59,59,1) 100%);
+}
+
+.createCVButton:hover{
+    background: rgb(25,25,25);
+    background: linear-gradient(280deg, rgb(39, 39, 39) 0%, rgba(59,59,59,1) 100%);
+}
