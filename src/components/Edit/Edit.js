@@ -28,11 +28,11 @@ export default class Edit extends Component {
             <div>
                 <div id="accordion">
                     {/* PERSONAL INFORMATION Card */}
-                    <div className="card">
-                        <div className="card-header" id="personalInformationHeading">
+                    <div className={`card ${classes.componentCard}`}>
+                        <div className={`card-header ${classes.cardHeader}`} id="personalInformationHeading">
                             <h5 className="mb-0">
-                                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsePersonalInformation" aria-expanded="true" aria-controls="collapsePersonalInformation">
-                                    Personal Information
+                                <button className={`btn btn-link collapsed ${classes.toggleButton}`} data-toggle="collapse" data-target="#collapsePersonalInformation" aria-expanded="true" aria-controls="collapsePersonalInformation">
+                                <i className={`fas fa-user ${classes.icon}`}></i>Personal Information
                                 </button>
                             </h5>
                         </div>
@@ -91,11 +91,11 @@ export default class Edit extends Component {
                     </div>
 
                     {/* EDUCATION Card */}
-                    <div className="card">
-                        <div className="card-header" id="educationHeading">
+                    <div className={`card ${classes.componentCard}`}>
+                        <div className={`card-header ${classes.cardHeader}`} id="educationHeading">
                             <h5 className="mb-0">
-                                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEducation" aria-expanded="false" aria-controls="collapseEducation">
-                                    Education
+                                <button className={`btn btn-link collapsed ${classes.toggleButton}`} data-toggle="collapse" data-target="#collapseEducation" aria-expanded="false" aria-controls="collapseEducation">
+                                <i className="fas fa-graduation-cap"></i>Education
                                 </button>
                             </h5>
                         </div>
@@ -192,11 +192,11 @@ export default class Edit extends Component {
                     </div>
 
                     {/* ACHIEVEMENTS Card */}
-                    <div className="card">
-                        <div className="card-header" id="headingAchievements">
+                    <div className={`card ${classes.componentCard}`}>
+                        <div className={`card-header ${classes.cardHeader}`} id="headingAchievements">
                             <h5 className="mb-0">
-                                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseAchievements" aria-expanded="false" aria-controls="collapseAchievements">
-                                    Major Achievements
+                                <button className={`btn btn-link collapsed ${classes.toggleButton}`} data-toggle="collapse" data-target="#collapseAchievements" aria-expanded="false" aria-controls="collapseAchievements">
+                                <i className="fas fa-award"></i>Major Achievements
                                 </button>
                             </h5>
                         </div>
@@ -252,11 +252,11 @@ export default class Edit extends Component {
                     </div>
 
                     {/* SKILLS Card */}
-                    <div className="card">
-                        <div className="card-header" id="headingSkills">
+                    <div className={`card ${classes.componentCard}`}>
+                        <div className={`card-header ${classes.cardHeader}`} id="headingSkills">
                             <h5 className="mb-0">
-                                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSkills" aria-expanded="false" aria-controls="collapseSkills">
-                                    Additional Skills
+                                <button className={`btn btn-link collapsed ${classes.toggleButton}`} data-toggle="collapse" data-target="#collapseSkills" aria-expanded="false" aria-controls="collapseSkills">
+                                <i className="fas fa-running"></i>Additional Skills
                                 </button>
                             </h5>
                         </div>
@@ -289,11 +289,11 @@ export default class Edit extends Component {
                     </div>
 
                     {/* AWARDS, HONORS, AND HONORARY MENTIONS Card */}
-                    <div className="card">
-                        <div className="card-header" id="headingAwards">
+                    <div className={`card ${classes.componentCard}`}>
+                        <div className={`card-header ${classes.cardHeader}`} id="headingAwards">
                             <h5 className="mb-0">
-                                <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseAwards" aria-expanded="false" aria-controls="collapseAwards">
-                                    Awards, Honors, and Honorary Mentions
+                                <button className={`btn btn-link collapsed ${classes.toggleButton}`} data-toggle="collapse" data-target="#collapseAwards" aria-expanded="false" aria-controls="collapseAwards">
+                                <i className="fas fa-trophy"></i>Awards, Honors, and Honorary Mentions
                                 </button>
                             </h5>
                         </div>
@@ -326,7 +326,7 @@ export default class Edit extends Component {
                     </div>
                 </div>
                 <div className={classes.buttonContainer}>
-                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.props.handleInformationSubmit}>Create my CV</button>
+                    <button type="button" className={`btn btn-primary btn-lg btn-block ${classes.createCVButton}`} onClick={this.props.handleInformationSubmit}>Create my CV</button>
                 </div>
             </div>
         );
